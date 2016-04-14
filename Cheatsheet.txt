@@ -1,0 +1,236 @@
+GCP Technologies change OFTEN!!
+Some instructions may go stale
+Contact us for help...:):):):)
+
+
+
+QUICK TUTORIAL
+gcloud config set project  <project name>
+alt to nano   -e filename
+
+make yourself into root..    sudo -s
+
+***************************************************
+*******http://rogerdudler.github.io/git-guide/*****
+***************************************************
+
+cloning on the files of a git repo with out creating a git or dir...
+the clone will create a git...so he && sudo....will delete the git..if not then the next clone will not work
+ sudo /bin/rm -rf *.* &&  sudo git clone https://github.com/Test-BMOHB/VM_Content.git .  && sudo /bin/rm -rf .git
+
+*********************************
+mounting a disk to the linux VM
+*********************************
+view this link and the video inside..
+https://cloud.google.com/compute/docs/disks/persistent-disks
+
+command...
+sudo /usr/share/google/safe_format_and_mount /dev/sdb /mnt/new_disk/
+
+
+
+
+
+
+
+
+
+ETL jobs from a local HD to the big query using a VM...
+http://googlecloudplatform.blogspot.com/2013/10/jumpstart-your-data-pipelining-into-google-bigquery.html
+or this one
+https://github.com/GoogleCloudPlatform/Data-Pipeline
+
+Cool Stuff....http://googlecloudplatform.github.io/
+TRANSFER FILES FROM VM  
+to transfer a file from a VM to the gs storage bucket use a parallel upload
+gsutil -o GSUtil:parallel_composite_upload_threshold=150M cp yourfilename gs://yourbuckname
+Appends DateTime Stamp from created file to Storage:
+gsutil -o GSUtil:parallel_composite_upload_threshold=150M cp /yourpath/yourfilename gs://customer_data/yourfilename_$(date +\%m\%d\%Y\%H\%M\%S).yourfilenameExtension
+or plain vanilla 
+https://cloud.google.com/storage/docs/gsutil/commands/cp
+Similarly, you can download text files from a bucket into your VM by doing:
+
+gsutil cp gs://my_bucket/*.txt .
+
+GROMING DATA SETS IN NOTPAD++ USING REGEX TO FIND AND REPLACE
+http://stackoverflow.com/questions/2467875/notepad-replace-all-regular-expression-start-of-the-line-and-end-of-the-line
+
+VM INSTALLATIONS
+Open a project and setup billing
+https://cloud.google.com/compute/docs/windows-quickstart
+read the tutorial....then do the following
+UPDATE THE VM!!!!!!!!!!!!!!
+Click on the SSH and the black window will appear at the CMD line...at the vm cmd line...
+sudo apt-get update
+UPDATE Cloud SDK Components
+sudo gcloud components update
+
+
+INTSTALL APACHE!!!!
+
+sudo apt-get install apache2 -y
+goto the dev console and click on the external ip for that server/vm
+edit the index.html
+var\www\html
+Review the logs for the apache server...
+/var/log/apache2$ cat access.log
+
+
+
+
+
+Install Python PIP
+at the vm cmd line...
+sudo apt-get install python-pip
+Install GIT
+at the vm cmd line...
+sudo apt-get install git
+Clone this repository
+at the command line...
+git clone https://github.com/Test-BMOHB/GCP-VM.git
+Install BARNUM
+at the vm cmd line...
+git clone https://github.com/chris1610/barnum-proj.git 
+if this doesnt work the VM will tell you how to install the git clone tool...follow the instructions
+go into the folder  barnum-proj(cd barnum-proj) then install it
+install it: sudo python setup.py install
+FAKER
+go into the folder  barnum-proj(cd faker) then install it
+git clone https://github.com/joke2k/faker.git
+install it: sudo python setup.py install
+Clone this repository
+at the command line...
+git clone https://github.com/Test-BMOHB/GCP-VM.git
+
+Install a tumux instance to prevent a total loss upon SSH disconnection
+Install a TMUX so your vm jobs do not die if you get disconnected
+sudo bash
+apt-get update && apt-get upgrade --yes
+apt-get install tmux --yes
+tmux
+To leave tmux, use CTRL+D, to detach it and keep it running, or exit to close the shell session. 
+If your connection is dropped, reopen the ssh window and reattach to tmux using:
+sudo tmux attach-session -t 0
+Learn about CRON Jobs
+CRON JOBS TUTORIAL
+How to view cron jobs..
+ grep CRON /var/log/syslog
+ ***** gsutil -o GSUtil:parallel_composite_upload_threshold=150M cp /home/test_bmohb/faker/largetrns.csv gs://customer_data  >/dev/null 2>&1
+https://www.howtoforge.com/a-short-introduction-to-cron-jobs
+https://help.ubuntu.com/community/CronHowto
+
+Learn Nano!!!!!!!!!
+Nano is an editor used in the VM cloud...why is it important?  BC when working with VMs or Servers you have to move files 
+around and occasionally make changes...and with out windows word or word pad it can be a pain.  The best way to get a file into the VM is to post it to github and then clone it into the VM...you could do FTP/SFTP etc...but its easier to open the doc in nano make a small change...
+http://www.nano-editor.org/dist/v2.2/nano.html#Introduction
+
+Time to run a python file and create a table 
+Type DIR and make sure you have the file random_rdc_trans.py  it should have been cloned into the VM 
+at the command line type...
+python random_rdc_trans.py
+and it should run...the output will be a csv file..large_rdc.csv
+it will generate 1MM fake remote deposit capture transactions...from here move it into the storage browser
+gsutil -o GSUtil:parallel_composite_upload_threshold=150M cp /yourpath/yourfilename gs://customer_data/yourfilename_$(date +\%m\%d\%Y\%H\%M\%S).yourfilenameExtension
+once its in the storage browser you can move it into the Big Query and query it!!
+
+Tips and tricks......
+See the beginning of a csv file with out printing the entire thing
+head this.csv
+Counting number of records
+wc -l this.csv
+LIST all elements in the dir
+ls -al
+Print all the contents
+cat print some_filename
+
+CRON JOBS TUTORIAL
+How to view cron jobs..
+ grep CRON /var/log/syslog
+ ***** gsutil -o GSUtil:parallel_composite_upload_threshold=150M cp /home/test_bmohb/faker/largetrns.csv gs://customer_data  >/dev/null 2>&1
+https://www.howtoforge.com/a-short-introduction-to-cron-jobs
+https://help.ubuntu.com/community/CronHowto
+File Name to Write: /tmp/crontab.t2M33c/crontab M-D  
+kill a job in Big query
+https:  /www.googleapis.com/bigquery/v2/bigqueryhellodashboard/bigqueryhellodashboard/jobs//cancel
+
+Check Python Modules
+Python/Help/modules
+
+Remove a Dir in the VM cmd line
+rm -rf mydir
+List all elements
+ls -al
+SETTING UP A NEW VMInstall and run the back-end database
+
+Enter these commands to install and run MongoDB. You can use the keyboard to copy and paste each command line. Click Done when you finish entering all the commands to close the SSH window.
+
+Update packages and install MongoDB. When asked if you want to continue, type 'Y'.
+sudo apt-get update
+sudo apt-get install mongodb
+The MongoDB service started when you installed it. You must stop it so you can change how it runs.
+sudo service mongodb stop
+Create a directory for MongoDB and then run the MongoDB service in the background on port 80.
+sudo mkdir $HOME/db ; sudo mongod --dbpath $HOME/db --port 80 --fork \
+--logpath /var/tmp/mongodb
+After you enter the final command, click Done and then confirm that you want to leave the page to close the SSH browser window.
+INSTALLING PANDAS ON UBUNTU...WHAT A PAIN IN THE NECK..
+sudo apt-get install python-pandas
+
+
+15Dec2015 *************************************
+Installing scapy a python webcrawler on the GCP VM
+http://doc.scrapy.org/en/latest/topics/ubuntu.html#topics-ubuntu
+Follow the steps 1,2,3...done!!
+
+
+********************************
+Set up email on the server
+http://www.havetheknowhow.com/Configure-the-server/Install-ssmtp.html
+
+
+******************************************
+SET UP AN APACHE WEB SERVER
+sudo apt-get install apache2
+cd .. 3 times
+cd var/www/html
+nano index.html
+have fun!!!
+on the instance console page there will be an IP..that the one for the index.html..
+
+
+************************** NEEDS FURTHER WORK  NOT TESTED **************************
+python gcloud package , this allows gcloud commands using python code...
+1. install python-develop
+sudo apt-get install python-dev
+2. install pycrypto
+sudo pip install pycrypto
+*************************************************
+Hadoop
+at the SSH cmd line import a file from cloud storage
+
+cp gs://bucket/filename .  <======================== don't forget the period or add  a destination for the file
+Run a file in a hadoop job
+gcloud beta dataproc jobs submit pyspark --cluster cluster-1test  hello-world.py
+
+
+Clone and push changes to git repository
+sudo git clone https://github.com/TestBMOHB03/Credit-Card-Model.git 
+              (actual git repository)
+
+sudo git add .
+adds everything to the commit
+
+cd to directory where the changes were made to git repository
+sudo git commit -am TestBMOHB03/Credit-Card-Model
+
+sudo git push -u https://github.com/TestBMOHB03/Credit-Card-Model.git master
+                 (git repository)
+
+
+Copying large data files from Storage to VM
+sudo apt-get install gcc python-dev python-setuptools
+sudo easy_install -U pip
+sudo pip uninstall crcmod
+sudo pip install -U crcmod
+
+Reference:  https://cloud.google.com/storage/docs/gsutil/addlhelp/CRC32CandInstallingcrcmod
